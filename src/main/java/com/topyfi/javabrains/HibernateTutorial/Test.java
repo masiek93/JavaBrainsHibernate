@@ -6,15 +6,18 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.topyfi.javabrains.HibernateTutorial.dto.Address;
 import com.topyfi.javabrains.HibernateTutorial.dto.UserDetails;
 
 public class Test {
 
 	public static void main(String[] args) {
 		UserDetails user = new UserDetails();
-		//user.setUserId(1);
+		Address address = new Address();
+		address.setStreet("Na Uboczu");
+		address.setCity("Warsaw");
 		user.setUserName("Marta");
-		user.setAddress("Address");
+		user.setAddress(address);
 		user.setJoinedDate(new Date());
 		user.setDescription("Decription... anything");
 		

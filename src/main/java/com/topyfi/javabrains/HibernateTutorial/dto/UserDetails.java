@@ -3,6 +3,7 @@ package com.topyfi.javabrains.HibernateTutorial.dto;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +16,8 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "USER_DETAILS")
 public class UserDetails {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "USER_ID")
 	private int userId;
 
@@ -24,10 +26,18 @@ public class UserDetails {
 
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
-	@Transient
-	private String address;
+	@Embedded
+	private Address address;
 	@Lob
 	private String description;
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public Date getJoinedDate() {
 		return joinedDate;
@@ -35,14 +45,6 @@ public class UserDetails {
 
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getDescription() {
