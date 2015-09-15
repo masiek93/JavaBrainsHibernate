@@ -12,8 +12,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		UserDetails user = new UserDetails();
-		user.setUserId(2);
-		user.setUserName("MartaSecond");
+		//user.setUserId(1);
+		user.setUserName("Marta");
 		user.setAddress("Address");
 		user.setJoinedDate(new Date());
 		user.setDescription("Decription... anything");
@@ -30,7 +30,9 @@ public class Test {
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		user = (UserDetails) session.get(UserDetails.class, 2);
+		user = (UserDetails) session.get(UserDetails.class, 1);
 		System.out.println("User Name : " + user.getUserName());
+		session.close();
+		sessionFactory.close();
 	}
 }
