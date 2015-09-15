@@ -1,19 +1,56 @@
 package com.topyfi.javabrains.HibernateTutorial.dto;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
-@Table (name="USER_DETAILS")
+@Table(name = "USER_DETAILS")
 public class UserDetails {
 	@Id
-	@Column (name="USER_ID")
+	@Column(name = "USER_ID")
 	private int userId;
-	
-	@Column (name="USER_NAME")
+
+	@Column(name = "USER_NAME")
 	private String userName;
+
+	@Temporal(TemporalType.DATE)
+	private Date joinedDate;
+	@Transient
+	private String address;
+	@Lob
+	private String description;
+
+	public Date getJoinedDate() {
+		return joinedDate;
+	}
+
+	public void setJoinedDate(Date joinedDate) {
+		this.joinedDate = joinedDate;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public int getUserId() {
 		return userId;
