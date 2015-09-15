@@ -16,8 +16,19 @@ public class Test {
 		Address address = new Address();
 		address.setStreet("Na Uboczu");
 		address.setCity("Warsaw");
+		address.setState("Mazowieckie");
+		address.setZipCode("33444");
+		
+		user.setHomeAddress(address);
+		
+		address.setStreet("Żytnia");
+		address.setCity("Wrocław");
+		address.setState("Dolnyśląsk");
+		address.setZipCode("53506");
+		
+		
 		user.setUserName("Marta");
-		user.setAddress(address);
+		user.setOfficeAddress(address);
 		user.setJoinedDate(new Date());
 		user.setDescription("Decription... anything");
 		

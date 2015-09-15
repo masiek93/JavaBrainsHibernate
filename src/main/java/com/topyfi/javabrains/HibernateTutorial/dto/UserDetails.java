@@ -2,6 +2,8 @@ package com.topyfi.javabrains.HibernateTutorial.dto;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,27 +18,45 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "USER_DETAILS")
 public class UserDetails {
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "USER_ID")
 	private int userId;
-
 	@Column(name = "USER_NAME")
 	private String userName;
 
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
 	@Embedded
-	private Address address;
+	private Address homeAddress;
+	@Embedded
+	@AttributeOverrides({
+	@AttributeOverride (name="street", column=@Column(name="OFFICE_STREET_NAME")),
+	@AttributeOverride (name="city", column=@Column(name="OFFICE_CITY_NAME")),
+	@AttributeOverride (name="state", column=@Column(name="OFFICE_STATE_NAME")),
+	@AttributeOverride (name="zipCode", column=@Column(name="OFFICE_ZIP_CODE"))
+	
+	})
+	private Address officeAddress;
+	
 	@Lob
 	private String description;
 
-	public Address getAddress() {
-		return address;
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public Address getOfficeAddress() {
+		return officeAddress;
+	}
+
+	public void setOfficeAddress(Address officeAddress) {
+		this.officeAddress = officeAddress;
 	}
 
 	public Date getJoinedDate() {

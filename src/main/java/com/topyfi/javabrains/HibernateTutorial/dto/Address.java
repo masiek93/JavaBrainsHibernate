@@ -1,13 +1,18 @@
 package com.topyfi.javabrains.HibernateTutorial.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+	@Column (name="STREET_NAME")
 	private String street;
+	@Column (name="CITY_NAME")
 	private String city;
+	@Column (name="STATE_NAME")
 	private String state;
-	private String pincode;
+	@Column (name="ZIP_CODE")
+	private String zipCode;
 
 	public String getStreet() {
 		return street;
@@ -33,12 +38,12 @@ public class Address {
 		this.state = state;
 	}
 
-	public String getPincode() {
-		return pincode;
+	public String getZipCode() {
+		return zipCode;
 	}
 
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 }
