@@ -12,6 +12,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -54,6 +56,8 @@ public class UserDetails {
 	 */
  
 	@ElementCollection
+	@JoinTable(name="USER_ADDRESS",
+				joinColumns = @JoinColumn(name="USER_ID"))
 	private Set<Address> listOfAddresses = new HashSet();
 
 	public Set<Address> getListOfAddresses() {
