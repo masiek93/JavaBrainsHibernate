@@ -12,10 +12,14 @@ public class Test {
 	public static void main(String[] args) {
 		UserDetails user = new UserDetails();
 		Vehicle vehicle = new Vehicle();
+		Vehicle vehicle2 = new Vehicle();
 		
 		user.setUserName("Marta");
 		vehicle.setVehicleName("Audi");
-		user.setVehicle(vehicle);
+		vehicle2.setVehicleName("BMW");
+		
+		user.getVehicle().add(vehicle);
+		user.getVehicle().add(vehicle2);
 		
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -24,6 +28,7 @@ public class Test {
 		
 		session.save(user);
 		session.save(vehicle);
+		session.save(vehicle2);
 		session.getTransaction().commit();
 		
 		session.close();
