@@ -31,6 +31,8 @@
 		<!-- Names the annotated entity class -->
 		<mapping class="com.topyfi.javabrains.HibernateTutorial.dto.UserDetails" />
 		<mapping class="com.topyfi.javabrains.HibernateTutorial.dto.Vehicle" />
+		<mapping class="com.topyfi.javabrains.HibernateTutorial.dto.TwoWheeler" />
+		<mapping class="com.topyfi.javabrains.HibernateTutorial.dto.FourWheeler" />
 
 	</session-factory>
 
