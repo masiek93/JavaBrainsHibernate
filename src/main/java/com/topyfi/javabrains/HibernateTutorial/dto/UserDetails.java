@@ -1,14 +1,11 @@
 package com.topyfi.javabrains.HibernateTutorial.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +15,10 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "USER_DETAILS")
@@ -33,57 +33,24 @@ public class UserDetails {
 
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
-	/*
-	 * @Embedded private Address homeAddress;
-	 * 
-	 * @Embedded
-	 * 
-	 * @AttributeOverrides({
-	 * 
-	 * @AttributeOverride (name="street",
-	 * column=@Column(name="OFFICE_STREET_NAME")),
-	 * 
-	 * @AttributeOverride (name="city",
-	 * column=@Column(name="OFFICE_CITY_NAME")),
-	 * 
-	 * @AttributeOverride (name="state",
-	 * column=@Column(name="OFFICE_STATE_NAME")),
-	 * 
-	 * @AttributeOverride (name="zipCode",
-	 * column=@Column(name="OFFICE_ZIP_CODE"))
-	 * 
-	 * }) private Address officeAddress;
-	 */
- 
+
 	@ElementCollection
 	@JoinTable(name="USER_ADDRESS",
 				joinColumns = @JoinColumn(name="USER_ID"))
-	private Set<Address> listOfAddresses = new HashSet();
+	@GenericGenerator(name = "increment-gen", strategy = "increment")
+	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "increment-gen", type = @Type(type="long"))
+	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 
-	public Set<Address> getListOfAddresses() {
+	public Collection<Address> getListOfAddresses() {
 		return listOfAddresses;
 	}
 
-	public void setListOfAddresses(Set<Address> listOfAddresses) {
+	public void setListOfAddresses(Collection<Address> listOfAddresses) {
 		this.listOfAddresses = listOfAddresses;
 	}
 
 	@Lob
 	private String description;
-
-	/*
-	 * public Address getHomeAddress() {
-	 * 
-	 * return homeAddress; }
-	 * 
-	 * public void setHomeAddress(Address homeAddress) { this.homeAddress =
-	 * homeAddress; }
-	 * 
-	 * public Address getOfficeAddress() { return officeAddress; }
-	 * 
-	 * public void setOfficeAddress(Address officeAddress) { this.officeAddress
-	 * = officeAddress; }
-	 */
 
 	public Date getJoinedDate() {
 		return joinedDate;
