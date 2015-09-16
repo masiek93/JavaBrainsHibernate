@@ -53,10 +53,11 @@ public class Test {
 		user = null;
 		
 		session = sessionFactory.openSession();
-		session.beginTransaction();
+		//session.beginTransaction();
 		user = (UserDetails) session.get(UserDetails.class, 1);
-		System.out.println("User Name : " + user.getUserName());
+		//System.out.println("User Name : " + user.getUserName());
 		session.close();
+		System.out.println("Size address list : " + user.getListOfAddresses().size());
 		sessionFactory.close();
 	}
 }

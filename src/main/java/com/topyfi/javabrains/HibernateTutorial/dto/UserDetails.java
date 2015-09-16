@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -34,11 +35,9 @@ public class UserDetails {
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="USER_ADDRESS",
 				joinColumns = @JoinColumn(name="USER_ID"))
-	@GenericGenerator(name = "increment-gen", strategy = "increment")
-	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "increment-gen", type = @Type(type="long"))
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 
 	public Collection<Address> getListOfAddresses() {
