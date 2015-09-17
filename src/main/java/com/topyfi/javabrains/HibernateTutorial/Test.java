@@ -13,16 +13,13 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		for(int i=0; i<10; i++){
-			UserDetails user = new UserDetails();
-			user.setUserName("User " + i);
-			session.save(user);
-		}
-		
+		UserDetails user = (UserDetails) session.get(UserDetails.class, 5);
+		//session.delete(user);
+		user.setUserName("Hi im new");
+		session.update(user);
 		session.getTransaction().commit();
 		session.close();
-		
-		session.close();
+		//System.out.println("User name -> " + user.getUserName());
 		sessionFactory.close();
 	}
 }
