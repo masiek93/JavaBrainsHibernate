@@ -1,8 +1,10 @@
 package com.topyfi.javabrains.HibernateTutorial.dto;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Four")
 public class FourWheeler extends Vehicle {
 	private String SteeringWheel;
 
