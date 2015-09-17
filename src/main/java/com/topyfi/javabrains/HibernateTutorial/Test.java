@@ -1,5 +1,8 @@
 package com.topyfi.javabrains.HibernateTutorial;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,16 +16,16 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		for(int i=0; i<10; i++){
-			UserDetails user = new UserDetails();
-			user.setUserName("User " + i);
-			session.save(user);
-		}
-		
+		Query query = session.createQuery("from UserDetails where userId > 5");
+		List<UserDetails> users = (List<UserDetails>) query.list();
 		session.getTransaction().commit();
 		session.close();
-		
-		session.close();
 		sessionFactory.close();
+		System.out.println("Size of list result: " + users.size());
+		
+		for(UserDetails u : users){
+			System.out.println(u.getUserName());
+		}
+		
 	}
 }
