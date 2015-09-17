@@ -4,9 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQuery(name="UserDetails.byId", query = "from UserDetails where userId = ?")
+@NamedNativeQuery(name="UserDetails.byName", query="SELECT * FROM USER_DETAILS WHERE USER_NAME = ?", resultClass=UserDetails.class)
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
