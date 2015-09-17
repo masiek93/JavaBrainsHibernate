@@ -16,18 +16,18 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Query query = session.createQuery("from UserDetails");
+		Query query = session.createQuery("select userName from UserDetails");
 		query.setFirstResult(5);
 		query.setMaxResults(4);
 		
-		List<UserDetails> users = (List<UserDetails>) query.list();
+		List<String> users = (List<String>) query.list();
 		session.getTransaction().commit();
 		session.close();
 		
-		System.out.println("Size of list result: " + users.size());
+		//System.out.println("Size of list result: " + users.size());
 		
-		for(UserDetails u : users){
-			System.out.println(u.getUserName());
+		for(String u : users){
+			System.out.println(u);
 		}
 		sessionFactory.close();
 	}
