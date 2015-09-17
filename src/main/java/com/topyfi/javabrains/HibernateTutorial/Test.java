@@ -9,15 +9,16 @@ import com.topyfi.javabrains.HibernateTutorial.dto.UserDetails;
 public class Test {
 
 	public static void main(String[] args) {
-		UserDetails user = new UserDetails();
-
-		user.setUserName("Marta");
-
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-//		session.save(user);
+		for(int i=0; i<10; i++){
+			UserDetails user = new UserDetails();
+			user.setUserName("User " + i);
+			session.save(user);
+		}
+		
 		session.getTransaction().commit();
 		session.close();
 		
