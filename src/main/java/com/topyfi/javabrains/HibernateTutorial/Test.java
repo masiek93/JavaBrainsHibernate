@@ -16,16 +16,19 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Query query = session.createQuery("from UserDetails where userId > 5");
+		Query query = session.createQuery("from UserDetails");
+		query.setFirstResult(5);
+		query.setMaxResults(4);
+		
 		List<UserDetails> users = (List<UserDetails>) query.list();
 		session.getTransaction().commit();
 		session.close();
-		sessionFactory.close();
+		
 		System.out.println("Size of list result: " + users.size());
 		
 		for(UserDetails u : users){
 			System.out.println(u.getUserName());
 		}
-		
+		sessionFactory.close();
 	}
 }
