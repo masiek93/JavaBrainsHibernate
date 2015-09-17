@@ -16,10 +16,12 @@ public class Test {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		int minUserId = 5;
+		String minUserId = "5";
+		String userName = "User 10";
 		
-		Query query = session.createQuery("from UserDetails where userId > " + minUserId);
-		
+		Query query = session.createQuery("from UserDetails where userId > ? and userName = ?");
+		query.setInteger(0, Integer.parseInt(minUserId));
+		query.setString(1, userName);
 		List<UserDetails> users = (List<UserDetails>) query.list();
 		session.getTransaction().commit();
 		session.close();
