@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQuery(name="UserDetails.byId", query = "from UserDetails where userId = ?")
-@NamedNativeQuery(name="UserDetails.byName", query="SELECT * FROM USER_DETAILS WHERE USER_NAME = ?", resultClass=UserDetails.class)
 @Table(name = "USER_DETAILS")
 public class UserDetails {
 
