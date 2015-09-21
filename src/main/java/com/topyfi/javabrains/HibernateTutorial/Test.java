@@ -3,11 +3,11 @@ package com.topyfi.javabrains.HibernateTutorial;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
 
 import com.topyfi.javabrains.HibernateTutorial.dto.UserDetails;
 
@@ -21,8 +21,15 @@ public class Test {
 		String minUserId = "5";
 		String userName = "User 10";
 		
-		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 7, 10)));
+/*		UserDetails exampleUser = new UserDetails();
+		exampleUser.setUserId(5);
+		exampleUser.setUserName("User 5");
+		
+		Example example = Example.create(exampleUser);*/
+		
+		Criteria criteria = session.createCriteria(UserDetails.class)
+							.setProjection(Projections.max("userId"));
+//		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 7, 10)));
 		
 		/*add(Restrictions.like("userName", "%User 1%"))
 				.add(Restrictions.between("userId", 5, 50));
