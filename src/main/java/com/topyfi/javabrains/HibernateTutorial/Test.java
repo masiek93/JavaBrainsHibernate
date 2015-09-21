@@ -21,14 +21,14 @@ public class Test {
 		String minUserId = "5";
 		String userName = "User 10";
 		
-/*		UserDetails exampleUser = new UserDetails();
-		exampleUser.setUserId(5);
+		UserDetails exampleUser = new UserDetails();
+		//exampleUser.setUserId(5);
 		exampleUser.setUserName("User 5");
 		
-		Example example = Example.create(exampleUser);*/
+		Example example = Example.create(exampleUser);
 		
 		Criteria criteria = session.createCriteria(UserDetails.class)
-							.setProjection(Projections.max("userId"));
+							.add(example);
 //		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 7, 10)));
 		
 		/*add(Restrictions.like("userName", "%User 1%"))
