@@ -22,8 +22,8 @@ public class Test {
 		String userName = "User 10";
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.eq("userName", "User 10"))
-				.add(Restrictions.gt("userId", 5));
+		criteria.add(Restrictions.like("userName", "%User 1%"))
+				.add(Restrictions.between("userId", 5, 50));
 	
 		List<UserDetails> users = (List<UserDetails>) criteria.list();
 		session.getTransaction().commit();
