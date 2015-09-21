@@ -22,9 +22,11 @@ public class Test {
 		String userName = "User 10";
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.like("userName", "%User 1%"))
+		criteria.add(Restrictions.or(Restrictions.between("userId", 0, 3), Restrictions.between("userId", 7, 10)));
+		
+		/*add(Restrictions.like("userName", "%User 1%"))
 				.add(Restrictions.between("userId", 5, 50));
-	
+	*/
 		List<UserDetails> users = (List<UserDetails>) criteria.list();
 		session.getTransaction().commit();
 		session.close();
