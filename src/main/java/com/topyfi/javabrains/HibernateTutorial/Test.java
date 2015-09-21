@@ -25,7 +25,7 @@ public class Test {
 		//exampleUser.setUserId(5);
 		exampleUser.setUserName("User 5");
 		
-		Example example = Example.create(exampleUser);
+		Example example = Example.create(exampleUser).excludeProperty ("userName");
 		
 		Criteria criteria = session.createCriteria(UserDetails.class)
 							.add(example);
